@@ -1,0 +1,116 @@
+{
+  "name": "Simple Home Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "2a7aeef3-9060-4684-b286-8661b4284e59",
+      "name": "When chat message received",
+      "webhookId": "f3cb3167-5482-476d-a6ea-3078b55f83c5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        20,
+        0
+      ],
+      "id": "1ba1159d-74d7-4260-85fc-d6e7d4798322",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -40,
+        200
+      ],
+      "id": "bfef7661-4221-480a-bdc8-69b7460f097e",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "JMkRRg2NEYDERBdk",
+          "name": "OpenAi personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.philipsHueTool",
+      "typeVersion": 1,
+      "position": [
+        220,
+        200
+      ],
+      "id": "605aebaa-2082-423a-acdb-3962de59ea82",
+      "name": "Update a light in Philips Hue"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a light in Philips Hue": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "53078bca-e148-4b6f-80e6-5ee7009842c4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "afa7f510f1903254f3d70c17ab703473c70f43436f4ce5f5584e8c170e3ea31b"
+  },
+  "id": "uxLShbzWILyK98yd",
+  "tags": []
+}
