@@ -22,8 +22,8 @@ if USE_MANY_MODELS:
     model_names = [
         "gpt-4.1-mini",
         "deepseek-chat",
-        "gemini-2.5-flash-preview-04-17",
-        "grok-3-mini-beta",
+        "gemini-2.5-flash",
+        "grok-3-mini",
     ]
     short_model_names = ["GPT 4.1 Mini", "DeepSeek V3", "Gemini 2.5 Flash", "Grok 3 Mini"]
 else:
